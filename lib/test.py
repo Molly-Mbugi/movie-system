@@ -1,51 +1,55 @@
-from config import conn, cursor
 from movie import Movie
 from director import Director
 
-def test_movie_operations():
-    # Drop the movies table if it exists
-    Movie.drop_table()
+# Drop and recreate tables (for testing purposes)
+Movie.drop_table()
+Movie.create_table()
 
-    # Create the movies table
-    Movie.create_table()
+Director.drop_table()
+Director.create_table()
 
-    # Create instances of Movie and save them
-    movie1 = Movie(title="The Shawshank Redemption", about="Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.", genre="Drama", duration=142, release="1994-09-23")
-    movie1.save()
+# Create instances of Movie and Director
+movie1 = Movie(None, "The Shawshank Redemption", "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.", "Drama", 142, "1994-09-23")
+movie1.save()
 
-    movie2 = Movie(title="The Godfather", about="The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.", genre="Crime", duration=175, release="1972-03-24")
-    movie2.save()
+movie2 = Movie(None, "The Godfather", "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.", "Crime", 175, "1972-03-24")
+movie2.save()
 
-    # Fetch all movies and print them
-    cursor.execute("SELECT * FROM movies")
-    movies = cursor.fetchall()
-    print("Movies:")
-    for movie in movies:
-        print(movie)
+director1 = Director(None, "Frank Darabont", "Castle Rock Entertainment")
+director1.save()
 
-def test_director_operations():
-    # Drop the directors table if it exists
-    Director.drop_table()
+director2 = Director(None, "Francis Ford Coppola", "Paramount Pictures")
+director2.save()
 
-    # Create the directors table
-    Director.create_table()
+# Update a movie and a director
+movie1.title = "The Shawshank Redemption (1994)"
+movie1.update()
 
-    # Create instances of Director and save them
-    director1 = Director(name="Quentin Tarantino", production="Pulp Fiction")
-    director1.save()
+director2.production = "Paramount Pictures, American Zoetrope"
+director2.update()
 
-    director2 = Director(name="Christopher Nolan", production="Inception")
-    director2.save()
+# Delete a movie and a director
+#movie2.delete()
+#director1.delete()
 
-    # Fetch all directors and print them
-    cursor.execute("SELECT * FROM directors")
-    directors = cursor.fetchall()
-    print("Directors:")
-    for director in directors:
-        print(director)
+# Find by name examples
+found_movie = Movie.find_by_name("The Shawshank Redemption (1994)")
+if found_movie:
+    print("Found Movie:", found_movie)
+else:
+    print("Movie not found")
 
-# Run the tests
-if __name__ == "__main__":
-    test_movie_operations()
-    print("\n")
-    test_director_operations()
+found_director = Director.find_by_name("Francis Ford Coppola")
+if found_director:
+    print("Found Director:", found_director)
+else:
+    print("Director not found")
+
+# Fetch all movies and directors
+print("\nMovies:")
+for movie in Movie.get_all_movies():
+    print(movie)
+
+print("\nDirectors:")
+for director in Director.get_all_directors():
+    print(director)
