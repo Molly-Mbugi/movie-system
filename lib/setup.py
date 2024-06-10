@@ -1,7 +1,6 @@
 from config import conn, cursor
 
-def create_movies_table():
-    # Create table for movies
+def create_tables():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS movies (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -12,9 +11,7 @@ def create_movies_table():
             release_date TEXT
         )
     ''')
-
-def create_directors_table():
-    # Create table for directors
+    
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS directors (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,9 +20,6 @@ def create_directors_table():
         )
     ''')
 
-def create_tables():
-    create_movies_table()
-    create_directors_table()
     conn.commit()
     conn.close()
 
