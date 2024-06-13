@@ -114,15 +114,12 @@ def delete_movies():
         print(f'Movie {id_} not found')   
 
 def list_movies():
-    
     movies = Movie.get_all_movies()
-    movie_id = input("Enter the department's id: ")
-    movie = Movie.find_by_id(movie_id)
     if movies:
         for movie in movies:
             print(movie)
     else:
-        print(f'Movies {movie_id} not found')             
+        print("No movies found.")            
      
    
 

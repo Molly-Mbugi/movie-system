@@ -52,6 +52,17 @@ class Director:
             conn.commit()
             self.id = cursor.lastrowid
 
+
+    @classmethod
+    def create(cls, name, production):
+        director = cls(name,production)
+
+        # save to the db
+        director.save()
+
+        return director
+
+
     def update(self):
         """ Update the director's attributes in the database """
         sql = """
