@@ -25,7 +25,7 @@ enter the virtual environment.
 We'll continue to add a command line interface to the company ORM application
 from the previous lesson:
 
-![company erd](file:///home/molly/Downloads/Untitled.png)
+![movie system erd](file:///home/molly/Downloads/Untitled.png)
 
 The directory structure is as follows:
 
