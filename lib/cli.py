@@ -1,17 +1,17 @@
-from helpers import(
-   exit_program, 
-   list_directors,
-   find_directors_by_name,
-   create_directors,
-   update_directors,
-   delete_directors,
-   find_movies_by_name,
-   create_movies,
-   update_movies,
-   delete_movies,
-   list_movies
-
+from helpers import (
+    exit_program, 
+    list_directors,
+    find_directors_by_name,
+    create_directors,
+    update_directors,
+    delete_directors,
+    find_movies_by_name,
+    create_movies,
+    update_movies,
+    delete_movies,
+    list_movies
 )
+
 def main():
     while True:
         menu()
@@ -38,10 +38,8 @@ def main():
             delete_movies()
         elif choice == "10":
             list_movies()
-        
         else:
             print("Invalid choice")
-
 
 def menu():
     print("Please select an option:")
@@ -57,8 +55,5 @@ def menu():
     print("9: Delete Movies")
     print("10: List all Movies")
 
-
 if __name__ == "__main__":
     main()
-
-
